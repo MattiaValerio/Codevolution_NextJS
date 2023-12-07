@@ -9,6 +9,7 @@ export default function Register() {
   return (
     <main className="flex h-full items-center justify-center">
       <RegisterCard></RegisterCard>
+
     </main>
   );
 }
