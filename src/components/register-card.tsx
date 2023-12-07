@@ -18,6 +18,11 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link";
 import { redirect } from 'next/navigation'
 import { useRouter } from 'next/navigation'
+import { PrismaClient } from '@prisma/client'
+import { User } from "lucide-react";
+import { Console } from "console";
+import addUserAction from "../ServerActions/userServerActions"
+import { startTransition, useTransition } from "react";
 
 
 const formSchema = z.object({
@@ -39,21 +44,28 @@ const formSchema = z.object({
       indirizzo: z.string().min(2, {
             message: "Inserire un indirizzo.",
       }),
-      CAP: z.string().min(5, {
+      cap: z.string().min(5, {
             message: "Inserire un CAP.",
       }),
-      Citta: z.string().min(2, {
+      citta: z.string().min(2, {
             message: "Inserire una citta.",
       }),
       provincia: z.string().min(2, {
             message: "Inserire una provincia [VE, UD, RO...].",
-      }),
-
-
-
+      })
+}).superRefine(({ password1, password2 }, ctx) => {
+      if (password1 !== password2) {
+            ctx.addIssue({
+                  code: "custom",
+                  message: "Passwords diverse",
+                  path: ['password2']
+            });
+      }
 })
 
 export default function RegisterCard() {
+      const [isPending, startTransition] = useTransition();
+
 
       // 1. Define your form.
       const form = useForm<z.infer<typeof formSchema>>({
@@ -65,30 +77,31 @@ export default function RegisterCard() {
                   password1: "",
                   password2: "",
                   indirizzo: "",
-                  CAP: "",
+                  cap: "",
                   provincia: "",
-                  Citta: ""
+                  citta: ""
             }
       })
 
       const router = useRouter()
       // 2. Define a submit handler.
-      function onSubmit(values: z.infer<typeof formSchema>) {
-            // Do something with the form values.
-            // ✅ This will be type-safe and validated.
-            console.log(values)
-            router.push("/")
+      async function onSubmit(values: z.infer<typeof formSchema>) {
 
+            var dati = JSON.stringify(values)
+            const formData = new FormData();
+            formData.append("dati", dati)
+            addUserAction(formData)
+            router.push("/")
       }
 
       return (<>
-            <Card className="flex flex-col items-center justify-center mx-3 w-full sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-4/12">
+            <Card className="flex flex-col items-center justify-center mx-3 w-full sm:w-10/12 md:w-10/12 lg:w-6/12 xl:w-5/12">
                   <CardHeader className="flex items-center">
                         <CardTitle >REGISTER</CardTitle>
                   </CardHeader>
                   <CardContent className="w-10/12 sm:w-10/12 md:w-10/12 lg:w-10/12 xl:w-10/12">
                         <Form {...form}>
-                              <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
+                              <form action={addUserAction} onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
                                     <FormField
                                           control={form.control}
                                           name="nome"
@@ -96,7 +109,7 @@ export default function RegisterCard() {
                                                 <FormItem>
                                                       <FormLabel>Nome:</FormLabel>
                                                       <FormControl >
-                                                            <Input id="name" {...field} />
+                                                            <Input id="nome" {...field} />
                                                       </FormControl>
                                                 </FormItem>
 
@@ -110,7 +123,7 @@ export default function RegisterCard() {
                                                 <FormItem >
                                                       <FormLabel>Cognome:</FormLabel>
                                                       <FormControl>
-                                                            <Input id="surname" {...field} />
+                                                            <Input id="cognome" {...field} />
                                                       </FormControl>
                                                 </FormItem>
 
@@ -139,7 +152,7 @@ export default function RegisterCard() {
                                                       <FormItem >
                                                             <FormLabel>Password:</FormLabel>
                                                             <FormControl>
-                                                                  <Input id="psw1" type="password" {...field} />
+                                                                  <Input id="password1" type="password" {...field} />
                                                             </FormControl>
                                                       </FormItem>
 
@@ -151,8 +164,9 @@ export default function RegisterCard() {
                                                       <FormItem >
                                                             <FormLabel>Password:</FormLabel>
                                                             <FormControl>
-                                                                  <Input id="psw2" type="password" {...field} />
+                                                                  <Input id="password2" type="password" {...field} />
                                                             </FormControl>
+                                                            <FormMessage />
                                                       </FormItem>
 
                                                 )}
@@ -166,7 +180,7 @@ export default function RegisterCard() {
                                                 <FormItem >
                                                       <FormLabel>Indirizzo:</FormLabel>
                                                       <FormControl>
-                                                            <Input id="address" {...field} />
+                                                            <Input id="indirizzo" {...field} />
                                                       </FormControl>
                                                 </FormItem>
 
@@ -175,7 +189,7 @@ export default function RegisterCard() {
 
                                     <FormField
                                           control={form.control}
-                                          name="CAP"
+                                          name="cap"
                                           render={({ field }) => (
                                                 <FormItem >
                                                       <FormLabel>CAP:</FormLabel>
@@ -188,12 +202,12 @@ export default function RegisterCard() {
                                     />
                                     <FormField
                                           control={form.control}
-                                          name="Citta"
+                                          name="citta"
                                           render={({ field }) => (
                                                 <FormItem >
                                                       <FormLabel>Città:</FormLabel>
                                                       <FormControl>
-                                                            <Input id="city" {...field} />
+                                                            <Input id="citta" {...field} />
                                                       </FormControl>
                                                 </FormItem>
 
