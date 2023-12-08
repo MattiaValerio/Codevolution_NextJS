@@ -22,3 +22,8 @@ model Users {
   password1 String
   password2 String
 }
+
+model Todos {
+  id     Int    @id @default(autoincrement())
+  titolo String
+}
