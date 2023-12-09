@@ -24,7 +24,9 @@ const formSchema = z.object({
 })
 
 
-export default function TodosPage(todos: any) {
+
+
+export default function TodosPage() {
 
 
       const form = useForm<z.infer<typeof formSchema>>({
