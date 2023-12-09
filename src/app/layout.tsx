@@ -11,7 +11,7 @@ const navLinks = [
   { name: "Home", href: "/" },
   { name: "Login", href: "/login" },
   { name: "Register", href: "/register" },
-  { name: "Forgot passowrd", href: "/forgot-password" },
+  { name: "Todos", href: "/todos" },
 ];
 
 export default function RootLayout({

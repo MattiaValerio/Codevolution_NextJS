@@ -5,10 +5,11 @@ export const metadata: Metadata = {
   title: "Register",
 };
 
-export default function Register() {
+
+export default async function Register() {
   return (
     <main className="flex h-full items-center justify-center">
-      <RegisterCard></RegisterCard>
+      <RegisterCard />
 
     </main>
   );
