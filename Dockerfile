@@ -3,7 +3,8 @@ FROM node:latest
 WORKDIR /usr/src/app
 
 COPY . .
-RUN npm install --production --ignore-scripts
-RUN npm run bild
+RUN npm i
+RUN npx prisma generate
+RUN npm run build
 
-CMD ["npm", "run"]
+CMD ["npm", "start"]
