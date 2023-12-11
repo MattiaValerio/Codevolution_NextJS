@@ -52,5 +52,6 @@ services:
       - next-app-network
 
 networks:
-  next-app-network:
+  my-network:
+    name: next-app-network
     driver: bridge
