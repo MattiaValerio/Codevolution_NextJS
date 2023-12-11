@@ -14,7 +14,8 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - network-prova
+      static-network:
+        ipv4_address: 172.20.128.2
     volumes:
       - ./data:/var/lib/postgresql/data
   
@@ -29,7 +30,8 @@ services:
     ports:
       - "80:3000"
     networks:
-      - network-prova
+      static-network:
+        ipv4_address: 172.20.128.3
   
   # Servizio PGAdmin
   pgadmin:
@@ -45,8 +47,11 @@ services:
     depends_on:
       - postgres-db
     networks:
-      - network-prova
+      static-network:
+        ipv4_address: 172.20.128.4
 
 networks:
-  network-prova:
-    driver: bridge
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
