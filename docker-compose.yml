@@ -29,7 +29,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: "postgresql://myuser:mypassword@172.21.0.2:5432/db-nextapp?schema=public"
+      DATABASE_URL: "postgresql://myuser:mypassword@postgres-db:5432/db-nextapp?schema=public"
   
   # Servizio PGAdmin
   # pgadmin:
