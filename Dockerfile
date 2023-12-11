@@ -2,13 +2,13 @@
 FROM node:21
 
 # Imposta la directory di lavoro
-WORKDIR /usr/src/app
+WORKDIR /src/app
 
 # Copia i file del tuo progetto nell'immagine
 COPY . .
 
 # Entra nella directory dell'app Next.js
-WORKDIR /usr/src/app/nextjs_app
+WORKDIR /src/app/nextjs_app
 
 # Installa le dipendenze di Prisma
 RUN npm install prisma
