@@ -8,7 +8,7 @@ WORKDIR /src/app
 COPY . .
 
 # Entra nella directory dell'app Next.js
-WORKDIR /src/app/nextjs_app
+WORKDIR /src/app/
 
 # Installa le dipendenze di Prisma
 RUN npm install prisma
