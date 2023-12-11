@@ -49,6 +49,6 @@ services:
 #     networks:
 #       - next-app-network
 
-# networks:
-#  next-app-network:
-#   driver: bridge
+networks:
+ prova_next-app-network:
+  driver: bridge
