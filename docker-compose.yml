@@ -2,10 +2,10 @@ version: '3'
 services:
     
   # Servizio PostgreSQL
-  postgres-db:
+  pgdb:
     image: postgres:latest
-    container_name: postgres-db
-    hostname: postgres-db # Imposta il nome host per il container PostgreSQL
+    container_name: pgdb
+    hostname: pgdb # Imposta il nome host per il container PostgreSQL
     restart: always
     environment:
       POSTGRES_DB: db-nextapp
@@ -13,8 +13,8 @@ services:
       POSTGRES_PASSWORD: mypassword
     ports:
       - "5432:5432"
-    expose:
-      - 5432
+    networks:
+      - next-app-network
     volumes:
       - ./data:/var/lib/postgresql/data
   
@@ -29,9 +29,11 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - postgres-db
+      - pgdb
     environment:
-      DATABASE_URL: "postgresql://myuser:mypassword@postgres-db:5432/db-nextapp?schema=public"
+      DATABASE_URL: "postgresql://myuser:mypassword@pgdb:5432/db-nextapp?schema=public"
+    networks:
+      - next-app-network
   
   # Servizio PGAdmin
   pgadmin:
@@ -45,4 +47,9 @@ services:
     ports:
       - "5050:80"
     depends_on:
-      - postgres-db
+      - pgdb
+    networks:
+      - next-app-network
+
+  network:
+  next-app-network:
