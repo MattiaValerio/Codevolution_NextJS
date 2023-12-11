@@ -11,7 +11,7 @@ COPY . .
 WORKDIR /usr/src/app/nextjs_app
 
 # Installa le dipendenze di Prisma
-RUN npm install @prisma/cli
+RUN npm install prisma
 RUN npx prisma generate
 
 # Torna alla directory principale
