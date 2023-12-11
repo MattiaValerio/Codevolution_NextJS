@@ -20,11 +20,8 @@ WORKDIR /usr/src/app
 # Installa le dipendenze del progetto Next.js
 RUN npm install
 
-#Build dell'applicazione
-RUN npm run build
-
 # Espone la porta 3000
 EXPOSE 3000
 
 # Avvia l'applicazione
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
