@@ -2,24 +2,24 @@ version: '3'
 services:
     
   # Servizio PostgreSQL
-  # postgres-db:
-  #   network_mode: host
-  #   image: postgres:latest
-  #   container_name: postgres-db
-  #   hostname: postgres-db # Imposta il nome host per il container PostgreSQL
-  #   restart: always
-  #   environment:
-  #     POSTGRES_DB: db-nextapp
-  #     POSTGRES_USER: myuser
-  #     POSTGRES_PASSWORD: mypassword
-  #   ports:
-  #     - "5432:5432"
-  #   volumes:
-  #     - ./data:/var/lib/postgresql/data
+  postgres-db:
+    image: postgres:latest
+    container_name: postgres-db
+    hostname: postgres-db # Imposta il nome host per il container PostgreSQL
+    restart: always
+    environment:
+      POSTGRES_DB: db-nextapp
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    volumes:
+      - ./data:/var/lib/postgresql/data
   
     #Applicazione web NextJS
   app-nextjs:
-    network_mode: host
     build: 
       context: .
       dockerfile: Dockerfile
@@ -32,16 +32,15 @@ services:
       DATABASE_URL: "postgresql://myuser:mypassword@postgres-db:5432/db-nextapp?schema=public"
   
   # Servizio PGAdmin
-  # pgadmin:
-  #   network_mode: host
-  #   image: dpage/pgadmin4:latest
-  #   container_name: pgadmin
-  #   hostname: my-pgadmin # Imposta il nome host per il container PGAdmin
-  #   restart: always
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: admin@example.com
-  #     PGADMIN_DEFAULT_PASSWORD: admin
-  #   ports:
-  #     - "5050:80"
-  #   depends_on:
-  #     - postgres-db
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    hostname: my-pgadmin # Imposta il nome host per il container PGAdmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres-db
