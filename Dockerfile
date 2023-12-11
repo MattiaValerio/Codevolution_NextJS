@@ -15,7 +15,7 @@ RUN npm install prisma
 RUN npx prisma generate
 
 # Torna alla directory principale
-WORKDIR /usr/src/app
+WORKDIR /src/app
 
 # Installa le dipendenze del progetto Next.js
 RUN npm install
