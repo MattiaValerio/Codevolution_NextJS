@@ -1,17 +1,5 @@
 version: '3'
 services:
-  #Applicazione web NextJS
-  app-nextjs:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-    container_name: app-nextjs
-    hostname: app-nextjs
-    restart: always
-    ports:
-      -"80:3000"
-    networks:
-      - network-prova
     
   # Servizio PostgreSQL
   postgres-db:
@@ -29,7 +17,20 @@ services:
       - network-prova
     volumes:
       - ./data:/var/lib/postgresql/data
-
+  
+    #Applicazione web NextJS
+  app-nextjs:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: app-nextjs
+    hostname: app-nextjs
+    restart: always
+    ports:
+      -"80:3000"
+    networks:
+      - network-prova
+  
   # Servizio PGAdmin
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -45,6 +46,7 @@ services:
       - postgres-db
     networks:
       - network-prova
+
 networks:
   network-prova:
     driver: bridge
