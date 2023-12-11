@@ -51,4 +51,4 @@ services:
 
 networks:
   prova_next-app-network:
-    driver: bridge
+    driver: bridge 
