@@ -30,10 +30,10 @@ import {
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
 import { DeleteUser, Updateuser } from "@/lib/Actions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { User } from "lucide-react";
 
 export default function DisplayUsersCards({ props }: { props: User[] }) {
-  const [open, setOpen] = useState(false);
 
   let newNome: string;
   let newCognome: string;
@@ -43,6 +43,7 @@ export default function DisplayUsersCards({ props }: { props: User[] }) {
   return (
     <div className="flex w-full gap-4 flex-wrap items-center justify-center">
       {props.map((user) => {
+        let [open, setOpen] = useState(false);
         return (
           <Dialog open={open} onOpenChange={setOpen} key={user.id}>
             <AlertDialog>
