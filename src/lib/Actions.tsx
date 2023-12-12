@@ -1,4 +1,5 @@
 "use server";
+import { Asul } from "next/font/google";
 import prisma from "../../db/db";
 import { revalidatePath } from "next/cache";
 
@@ -13,6 +14,16 @@ export async function addUserAction(e: FormData) {
     data: x,
   });
 }
+
+export async function GetUsers() {
+  const users = await prisma.users.findMany();
+
+  return users;
+}
+
+// export default async function DeleteUser(UserId: number){
+//   await prisma.users.delete()
+// }
 
 export async function AddTodo(e: FormData) {
   //const prisma = new PrismaClient();
