@@ -44,10 +44,15 @@ export default function DisplayUsersCards({ props }: { props: User[] }) {
     <div className="flex w-full gap-4 flex-wrap items-center justify-center">
       {props.map((user) => {
         let [open, setOpen] = useState(false);
+
+        useEffect(() => {
+          setOpen(!open)
+        }, [])
+
         return (
-          <Dialog open={open} onOpenChange={setOpen} key={user.id}>
+          <Dialog key={user.id}>
             <AlertDialog>
-              <Card className="flex flex-col sm:w-5/12 md:w-3/12 xl:w-2/12">
+              <Card className="flex flex-col sm:w-5/12  sm:max-h-3/6 md:w-3/12 md:max-h-3/6 xl:w-2/12 ">
                 <CardHeader>
                   <CardTitle className="text-center">
                     {user.nome} {user.cognome}

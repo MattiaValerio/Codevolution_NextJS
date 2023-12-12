@@ -95,11 +95,11 @@ export default function RegisterCard() {
 
   return (
     <>
-      <Card className="flex flex-col items-center justify-center mx-3 w-full sm:w-10/12 md:w-10/12 lg:w-6/12 xl:w-5/12">
+      <Card className="flex flex-col items-center justify-center  w-full sm:w-10/12 md:w-10/12 lg:w-6/12 xl:w-5/12">
         <CardHeader className="flex items-center">
           <CardTitle>REGISTER</CardTitle>
         </CardHeader>
-        <CardContent className="w-10/12 sm:w-10/12 md:w-10/12 lg:w-10/12 xl:w-10/12">
+        <CardContent className="w-full sm:w-10/12 md:w-10/12 lg:w-10/12 xl:w-10/12">
           <Form {...form}>
             <form
               action={addUserAction}
@@ -145,7 +145,7 @@ export default function RegisterCard() {
                 )}
               />
 
-              <div className=" flex justify-between">
+              <div className=" flex gap-3 justify-between">
                 <FormField
                   control={form.control}
                   name="password1"
@@ -232,9 +232,6 @@ export default function RegisterCard() {
             </form>
           </Form>
         </CardContent>
-        <CardFooter>
-          <p>{new Date().getFullYear()} © Mattia Valerio</p>
-        </CardFooter>
       </Card>
     </>
   );

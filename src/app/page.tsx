@@ -13,7 +13,11 @@ export default async function Home() {
 
   return (
     <>
-      <main className="border flex flex-col gap-5 h-full items-center justify-center">
+      <main className=" flex flex-col gap-8 h-full items-center justify-center mt-5">
+        <div className="flex flex-col items-center gap-2">
+          <h1 className="text-4xl">UTENTI</h1>
+          <p className="text-gray-500">Vai alla sezione Register per creare un nuovo utente</p>
+        </div>
         <DisplayUsersCards props={users}></DisplayUsersCards>
       </main>
     </>

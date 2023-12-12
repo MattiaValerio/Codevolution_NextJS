@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default async function Register() {
   return (
-    <main className="flex h-full items-center justify-center">
+    <main className="flex flex-col p-3 items-center justify-center">
       <RegisterCard />
 
     </main>
