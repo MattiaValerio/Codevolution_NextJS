@@ -27,19 +27,19 @@ export default function RootLayout({
         <html lang="en" suppressHydrationWarning>
           <body className={inter.className}>
             <main className="flex flex-col h-screen">
-
               <ThemeProvider
                 attribute="class"
                 defaultTheme="dark"
                 enableSystem
                 disableTransitionOnChange
-              >{children}</ThemeProvider>
-
+              >
+                {children}
+              </ThemeProvider>
             </main>
           </body>
         </html>
       </>
-    )
+    );
   }
 
   return (
@@ -55,8 +55,9 @@ export default function RootLayout({
                   <Link
                     href={link.href}
                     key={link.name}
-                    className={`${isActive ? "text-blue-400 " : "text-white"
-                      } h-[100%] flex items-center justify-center px-2 `}
+                    className={`${
+                      isActive ? "text-blue-400 " : "text-white"
+                    } h-[100%] flex items-center justify-center px-2 `}
                   >
                     {link.name}
                   </Link>
@@ -71,7 +72,9 @@ export default function RootLayout({
               defaultTheme="dark"
               enableSystem
               disableTransitionOnChange
-            >{children}</ThemeProvider>
+            >
+              {children}
+            </ThemeProvider>
           </div>
 
           <footer className="w-[100%] bg-black h-16 flex-col flex items-center justify-center">

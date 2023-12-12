@@ -1,4 +1,5 @@
 type User = {
+      id: number,
       nome: String,
       cognome: String,
       username: String

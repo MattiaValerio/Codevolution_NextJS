@@ -17,13 +17,36 @@ export async function addUserAction(e: FormData) {
 
 export async function GetUsers() {
   const users = await prisma.users.findMany();
-
   return users;
 }
 
-// export default async function DeleteUser(UserId: number){
-//   await prisma.users.delete()
-// }
+export async function Updateuser(
+  UserId: number,
+  nome: string,
+  cognome: string,
+  username: string,
+  indirizzo: string
+) {
+  await prisma.users.update({
+    where: { id: UserId },
+    data: {
+      nome: nome,
+      username: username,
+      indirizzo: indirizzo,
+      cognome: cognome,
+    },
+  });
+  revalidatePath("/");
+}
+
+export async function DeleteUser(UserId: number) {
+  await await prisma.users.deleteMany({
+    where: {
+      id: UserId,
+    },
+  });
+  revalidatePath("/");
+}
 
 export async function AddTodo(e: FormData) {
   //const prisma = new PrismaClient();
