@@ -36,4 +36,4 @@ services:
       - "3000:3000"
     environment:
       DATABASE_URL: postgresql://myuser:mypassword@postgres:5432/db_nextapp?schema=public
-    command: npx prisma db push && sleep infinity
+    command: sleep infinity
