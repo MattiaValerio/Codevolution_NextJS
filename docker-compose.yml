@@ -34,4 +34,6 @@ services:
       DATABASE_URL: postgresql://myuser:mypassword@postgres:5432/db_nextapp?schema=public
     depends_on:
       - postgres
-    command: npx prisma db push
+    command:
+      - npx prisma db push
+      - npm start
