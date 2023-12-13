@@ -24,12 +24,13 @@ services:
     depends_on:
       - postgres
 
-  nextjs_app:
+  next-app:
     build:
       context: .
       dockerfile: Dockerfile
-    hostname: nextjs_app
-    container_name: app_nextjs
+      image: next-app
+    hostname: next-app
+    container_name: next-app
     ports:
       - "3000:3000"
     environment:
