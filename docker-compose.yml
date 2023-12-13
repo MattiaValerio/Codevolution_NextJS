@@ -3,6 +3,7 @@ version: '3'
 services:
   postgres:
     image: postgres:latest
+    hostname: postgres
     container_name: postgres
     environment:
       POSTGRES_USER: myuser
@@ -13,6 +14,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4:latest
+    hostname: pgadmin
     container_name: pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@example.com
@@ -24,9 +26,10 @@ services:
 
   nextjs_app:
     image: next-app
+    hostname: next-app
     container_name: app_nextjs
     ports:
-      - "80:3000"
+      - "3000:3000"
     environment:
       DATABASE_URL: postgresql://myuser:mypassword@postgres:5432/db_nextapp?schema=public
     depends_on:
