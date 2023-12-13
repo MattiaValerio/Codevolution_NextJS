@@ -23,12 +23,10 @@ services:
       - postgres
 
   nextjs_app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: next-app
     container_name: app_nextjs
     ports:
-      - "3000:3000"
+      - "80:3000"
     environment:
       DATABASE_URL: postgresql://myuser:mypassword@postgres:5432/db_nextapp?schema=public
     depends_on:
