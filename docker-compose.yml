@@ -6,8 +6,8 @@ services:
     hostname: postgres
     container_name: postgres
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
+      POSTGRES_USER: utenteprova
+      POSTGRES_PASSWORD: passwordProva
       POSTGRES_DB: db_nextapp
     ports:
       - "5432:5432"
@@ -35,5 +35,5 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: postgresql://myuser:mypassword@postgres:5432/db_nextapp?schema=public
+      DATABASE_URL: postgresql://utenteprova:utenteprova@postgres:5432/db_nextapp?schema=public
     command: bash -c "npx prisma db push && npm run dev"
