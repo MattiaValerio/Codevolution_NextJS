@@ -28,7 +28,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      image: next-app
     hostname: next-app
     container_name: next-app
     ports:
