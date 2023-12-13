@@ -6,7 +6,7 @@ services:
     hostname: postgres
     container_name: postgres
     environment:
-      POSTGRES_USER: utenteprova
+      POSTGRES_USER: utenteProva
       POSTGRES_PASSWORD: passwordProva
       POSTGRES_DB: db_nextapp
     ports:
