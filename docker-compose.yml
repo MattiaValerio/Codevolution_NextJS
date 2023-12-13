@@ -35,5 +35,5 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: postgresql://utenteprova:utenteprova@postgres:5432/db_nextapp?schema=public
+      DATABASE_URL: postgresql://utenteProva:passwordProva@postgres:5432/db_nextapp?schema=public
     command: bash -c "npx prisma db push && npm run dev"
