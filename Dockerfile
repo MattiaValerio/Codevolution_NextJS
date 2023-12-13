@@ -23,5 +23,7 @@ RUN npm install
 # Espone la porta 3000
 EXPOSE 3000
 
+RUN npx prisma db push
+
 # Avvia l'applicazione
 CMD ["npm", "run", "dev"]
