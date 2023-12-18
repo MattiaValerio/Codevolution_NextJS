@@ -32,9 +32,9 @@ import {
 import { DeleteUser, Updateuser } from "@/lib/Actions";
 import { useEffect, useState } from "react";
 import { User } from "lucide-react";
+import { set } from "react-hook-form";
 
 export default function DisplayUsersCards({ props }: { props: User[] }) {
-
   let newNome: string;
   let newCognome: string;
   let newUserName: string;
@@ -44,13 +44,13 @@ export default function DisplayUsersCards({ props }: { props: User[] }) {
     <div className="flex w-full gap-4 flex-wrap items-center justify-center">
       {props.map((user) => {
         let [open, setOpen] = useState(false);
-
         useEffect(() => {
-          setOpen(!open)
-        }, [])
-
+          if (open == true) {
+            setOpen(false);
+          }
+        }, [setOpen]);
         return (
-          <Dialog key={user.id}>
+          <Dialog key={user.id} open={open} onOpenChange={setOpen}>
             <AlertDialog>
               <Card className="flex flex-col sm:w-5/12  sm:max-h-3/6 md:w-3/12 md:max-h-3/6 xl:w-2/12 ">
                 <CardHeader>
