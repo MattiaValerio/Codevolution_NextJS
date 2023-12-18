@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   var users = await GetUsers();
-
   return (
     <>
       <main className=" flex flex-col gap-8 h-full items-center justify-center mt-5">

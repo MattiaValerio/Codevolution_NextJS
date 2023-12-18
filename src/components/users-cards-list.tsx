@@ -52,7 +52,7 @@ export default function DisplayUsersCards({ props }: { props: User[] }) {
         return (
           <Dialog key={user.id} open={open} onOpenChange={setOpen}>
             <AlertDialog>
-              <Card className="flex flex-col sm:w-5/12  sm:max-h-3/6 md:w-3/12 md:max-h-3/6 xl:w-2/12 ">
+              <Card className="flex flex-col w-8/12 sm:w-5/12  sm:max-h-3/6 md:w-3/12 md:max-h-3/6 xl:w-2/12 ">
                 <CardHeader>
                   <CardTitle className="text-center">
                     {user.nome} {user.cognome}
@@ -65,8 +65,9 @@ export default function DisplayUsersCards({ props }: { props: User[] }) {
                     </p>
                   </div>
                   <div>
+                    <p>{user.citta},</p>
                     <p>
-                      {user.citta}, {user.provincia}, {user.cap}
+                      {user.provincia}, {user.cap}
                     </p>
                     <p>{user.indirizzo}</p>
                   </div>

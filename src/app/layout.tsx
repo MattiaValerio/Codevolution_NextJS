@@ -12,6 +12,7 @@ const navLinks = [
   // { name: "Login", href: "/login" },
   { name: "Register", href: "/register" },
   { name: "Todos", href: "/todos" },
+  { name: "Covid", href: "/covid" },
 ];
 
 export default function RootLayout({
@@ -34,8 +35,9 @@ export default function RootLayout({
                   <Link
                     href={link.href}
                     key={link.name}
-                    className={`${isActive ? "text-blue-400 " : "text-white"
-                      } h-[100%] flex items-center justify-center px-2 `}
+                    className={`${
+                      isActive ? "text-blue-400 " : "text-white"
+                    } h-[100%] flex items-center justify-center px-2 `}
                   >
                     {link.name}
                   </Link>
